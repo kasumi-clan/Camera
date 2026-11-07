@@ -19,8 +19,9 @@ jobs:
           ls -la models_src
       - name: Cai thu vien
         run: |
-          pip install torch==2.4.1 --index-url https://download.pytorch.org/whl/cpu
-          pip install onnx onnxruntime numpy pillow einops timm==0.9.16
+          pip install torch==2.4.1 torchvision==0.19.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install "numpy<2" onnx onnxruntime pillow einops timm==0.9.16
+          python -c "import torch; print('torch', torch.__version__)"
       - name: Chuyen doi va kiem tra bang anh test
         run: python tools/convert_models.py models_src out
       - uses: actions/upload-artifact@v4
